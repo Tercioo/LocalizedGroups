@@ -1,5 +1,3 @@
-
-
 LocalizedGroups = LibStub ("AceAddon-3.0"):NewAddon ("LocalizedGroups", "AceConsole-3.0", "AceEvent-3.0", "AceTimer-3.0")
 
 local LocalizedGroups = LocalizedGroups
@@ -24,8 +22,10 @@ end)
 --> BRAZIL
 	function LocalizedGroups:InstallHookBR()
 		hooksecurefunc ("LFGListSearchEntry_Update", function (self) 
-			local id1, activityID1, name1, comment1, voiceChat1, iLvl1, age1, numBNetFriends1, numCharFriends1, numGuildMates1, isDelisted1, _, LN1, numMembers1 = C_LFGList.GetSearchResultInfo (self.resultID)
-			
+			local searchResultInfo1 = C_LFGList.GetSearchResultInfo(self.resultID)
+			local LN1 = searchResultInfo1.leaderName
+			local activityID1 = searchResultInfo1.activityID
+
 			if (LN1 and ( LN1:find ("Azralon") or LN1:find ("Nemesis") or LN1:find ("Gallywyx") or LN1:find ("Tol Barad") or LN1:find ("Goldrinn") or not select (2, strsplit ("-", LN1)))) then 
 				local activityName = C_LFGList.GetActivityInfo (activityID1)
 				
@@ -45,8 +45,18 @@ end)
 				return
 			end
 			
-			local _, _, _, _, _, _, _, numBNetFriends1, numCharFriends1, numGuildMates1, _, _, LN1 = C_LFGList.GetSearchResultInfo (id1)
-			local _, _, _, _, _, _, _, numBNetFriends2, numCharFriends2, numGuildMates2, _, _, LN2 = C_LFGList.GetSearchResultInfo (id2)
+			local searchResultInfo1 = C_LFGList.GetSearchResultInfo(id1)
+			local searchResultInfo2 = C_LFGList.GetSearchResultInfo(id2)
+
+			local numBNetFriends1 = searchResultInfo1.numBNetFriends
+			local numCharFriends1 = searchResultInfo1.numCharFriends
+			local numGuildMates1 = searchResultInfo1.numGuildMates
+			local LN1 = searchResultInfo1.leaderName
+
+			local numBNetFriends2 = searchResultInfo2.numBNetFriends
+			local numCharFriends2 = searchResultInfo2.numCharFriends
+			local numGuildMates2 = searchResultInfo2.numGuildMates
+			local LN2 = searchResultInfo2.leaderName
 
 			if (LN1 and ( LN1:find ("Azralon") or LN1:find ("Nemesis") or LN1:find ("Gallywyx") or LN1:find ("Tol Barad") or LN1:find ("Goldrinn") or not select (2, strsplit ("-", LN1)))) then 
 				if (LN2 and ( LN2:find ("Azralon") or LN2:find ("Nemesis") or LN2:find ("Gallywyx") or LN2:find ("Tol Barad") or LN2:find ("Goldrinn") or not select (2, strsplit ("-", LN2)))) then 
@@ -94,7 +104,9 @@ end)
 --> LATIN
 	function LocalizedGroups:InstallHookLA()
 		hooksecurefunc ("LFGListSearchEntry_Update", function (self) 
-			local id1, activityID1, name1, comment1, voiceChat1, iLvl1, age1, numBNetFriends1, numCharFriends1, numGuildMates1, isDelisted1, _, LN1, numMembers1 = C_LFGList.GetSearchResultInfo (self.resultID)
+			local searchResultInfo1 = C_LFGList.GetSearchResultInfo(self.resultID)
+			local LN1 = searchResultInfo1.leaderName
+			local activityID1 = searchResultInfo1.activityID
 			
 			if (LN1 and ( LN1:find ("Quel'Thalas") or LN1:find ("Drakkari") or LN1:find ("Ragnaros") or not select (2, strsplit ("-", LN1)))) then 
 				local activityName = C_LFGList.GetActivityInfo (activityID1)
@@ -108,9 +120,18 @@ end)
 	function LocalizedGroups:ReplaceSortFuncLA()
 		LFGListUtil_SortSearchResultsCB = function (id1, id2)
 			
-			local _, _, _, _, _, _, _, numBNetFriends1, numCharFriends1, numGuildMates1, _, _, LN1 = C_LFGList.GetSearchResultInfo (id1)
-			local _, _, _, _, _, _, _, numBNetFriends2, numCharFriends2, numGuildMates2, _, _, LN2 = C_LFGList.GetSearchResultInfo (id2)
+			local searchResultInfo1 = C_LFGList.GetSearchResultInfo(id1)
+			local searchResultInfo2 = C_LFGList.GetSearchResultInfo(id2)
 
+			local numBNetFriends1 = searchResultInfo1.numBNetFriends
+			local numCharFriends1 = searchResultInfo1.numCharFriends
+			local numGuildMates1 = searchResultInfo1.numGuildMates
+			local LN1 = searchResultInfo1.leaderName
+
+			local numBNetFriends2 = searchResultInfo2.numBNetFriends
+			local numCharFriends2 = searchResultInfo2.numCharFriends
+			local numGuildMates2 = searchResultInfo2.numGuildMates
+			local LN2 = searchResultInfo2.leaderName
 			local regionID = GetCurrentRegion()
 			
 			--LA realms are under US region which has ID 1, avoid issues with europe server name
@@ -164,22 +185,36 @@ end)
 --> OCEANIC
 	function LocalizedGroups:InstallHookOC()
 		hooksecurefunc ("LFGListSearchEntry_Update", function (self) 
-			local id1, activityID1, name1, comment1, voiceChat1, iLvl1, age1, numBNetFriends1, numCharFriends1, numGuildMates1, isDelisted1, _, LN1, numMembers1 = C_LFGList.GetSearchResultInfo (self.resultID)
-			
+			local searchResultInfo1 = C_LFGList.GetSearchResultInfo(self.resultID)
+			local LN1 = searchResultInfo1.leaderName
+			local activityID1 = searchResultInfo1.activityID
+
 			if (LN1 and ( LN1:find ("Aman'Thul") or LN1:find ("Barthilas") or LN1:find ("Caelestrasz") or LN1:find ("Dath'Remar") or LN1:find ("Dreadmaul") or LN1:find ("Gundrak") or LN1:find ("Jubei'Thos") or LN1:find ("Khaz'goroth") or LN1:find ("Nagrand") or LN1:find ("Saurfang") or LN1:find ("Thaurissan") or LN1:find ("Frostmourne") or not select (2, strsplit ("-", LN1)))) then 
 				local activityName = C_LFGList.GetActivityInfo (activityID1)
 				
 				self.ActivityName:SetText ("|cFFFFFF00[OC]|r " .. activityName)
 				self.ActivityName:SetTextColor (0, 1, 0)
+			
+
 			end
 		end)
 	end
 
 	function LocalizedGroups:ReplaceSortFuncOC()
 		LFGListUtil_SortSearchResultsCB = function (id1, id2)
-			
-			local _, _, _, _, _, _, _, numBNetFriends1, numCharFriends1, numGuildMates1, _, _, LN1 = C_LFGList.GetSearchResultInfo (id1)
-			local _, _, _, _, _, _, _, numBNetFriends2, numCharFriends2, numGuildMates2, _, _, LN2 = C_LFGList.GetSearchResultInfo (id2)
+
+			local searchResultInfo1 = C_LFGList.GetSearchResultInfo(id1)
+			local searchResultInfo2 = C_LFGList.GetSearchResultInfo(id2)
+
+			local numBNetFriends1 = searchResultInfo1.numBNetFriends
+			local numCharFriends1 = searchResultInfo1.numCharFriends
+			local numGuildMates1 = searchResultInfo1.numGuildMates
+			local LN1 = searchResultInfo1.leaderName
+
+			local numBNetFriends2 = searchResultInfo2.numBNetFriends
+			local numCharFriends2 = searchResultInfo2.numCharFriends
+			local numGuildMates2 = searchResultInfo2.numGuildMates
+			local LN2 = searchResultInfo2.leaderName
 
 			if (LN1 and ( LN1:find ("Aman'Thul") or LN1:find ("Barthilas") or LN1:find ("Caelestrasz") or LN1:find ("Dath'Remar") or LN1:find ("Dreadmaul") or LN1:find ("Gundrak") or LN1:find ("Jubei'Thos") or LN1:find ("Khaz'goroth") or LN1:find ("Nagrand") or LN1:find ("Saurfang") or LN1:find ("Thaurissan") or LN1:find ("Frostmourne") or not select (2, strsplit ("-", LN1)))) then 
 				if (LN2 and ( LN2:find ("Aman'Thul") or LN2:find ("Barthilas") or LN2:find ("Caelestrasz") or LN2:find ("Dath'Remar") or LN2:find ("Dreadmaul") or LN2:find ("Gundrak") or LN2:find ("Jubei'Thos") or LN2:find ("Khaz'goroth") or LN2:find ("Nagrand") or LN2:find ("Saurfang") or LN2:find ("Thaurissan") or LN2:find ("Frostmourne") or not select (2, strsplit ("-", LN2)))) then 
@@ -227,7 +262,9 @@ end)
 --> FRENCH
 	function LocalizedGroups:InstallHookFR()
 		hooksecurefunc ("LFGListSearchEntry_Update", function (self) 
-			local id1, activityID1, name1, comment1, voiceChat1, iLvl1, age1, numBNetFriends1, numCharFriends1, numGuildMates1, isDelisted1, _, LN1, numMembers1 = C_LFGList.GetSearchResultInfo (self.resultID)
+			local searchResultInfo1 = C_LFGList.GetSearchResultInfo(self.resultID)
+			local LN1 = searchResultInfo1.leaderName
+			local activityID1 = searchResultInfo1.activityID
 			
 			if (LN1 and ( LN1:find ("Hyjal") or LN1:find ("Arak-arahm") or LN1:find ("Temple noir") or LN1:find ("Arathi") or LN1:find ("Archimonde") or LN1:find ("Ysondre") or LN1:find ("Chants �ternels") or LN1:find ("Cho'gall") or LN1:find ("Confr�rie du Thorium") or LN1:find ("Conseil des Ombres") or LN1:find ("Culte de la Rive noire") or LN1:find ("Dalaran") or LN1:find ("Vol'jin") or LN1:find ("Drek'Thar") or LN1:find ("Eitrigg") or LN1:find ("Sinstralis") or LN1:find ("Eldre'Thalas") or LN1:find ("Naxxramas") or LN1:find ("Varimathras") or LN1:find ("Uldaman") or LN1:find ("Garona") or LN1:find ("Illidan") or LN1:find ("Kael'thas") or LN1:find ("Sargeras") or LN1:find ("Khaz Modan") or LN1:find ("Kirin Tor") or LN1:find ("Krasus") or LN1:find ("La Croisade �carlate") or LN1:find ("Rashgarroth") or LN1:find ("Les Clairvoyants") or LN1:find ("Les Sentinelles") or LN1:find ("Mar�cage de Zangar") or LN1:find ("Medivh") or LN1:find ("Ner'zhul") or LN1:find ("Throk'Feroth") or LN1:find ("Elune") or not select (2, strsplit ("-", LN1)))) then 
 				local activityName = C_LFGList.GetActivityInfo (activityID1)
@@ -241,8 +278,18 @@ end)
 	function LocalizedGroups:ReplaceSortFuncFR()
 		LFGListUtil_SortSearchResultsCB = function (id1, id2)
 			
-			local _, _, _, _, _, _, _, numBNetFriends1, numCharFriends1, numGuildMates1, _, _, LN1 = C_LFGList.GetSearchResultInfo (id1)
-			local _, _, _, _, _, _, _, numBNetFriends2, numCharFriends2, numGuildMates2, _, _, LN2 = C_LFGList.GetSearchResultInfo (id2)
+			local searchResultInfo1 = C_LFGList.GetSearchResultInfo(id1)
+			local searchResultInfo2 = C_LFGList.GetSearchResultInfo(id2)
+
+			local numBNetFriends1 = searchResultInfo1.numBNetFriends
+			local numCharFriends1 = searchResultInfo1.numCharFriends
+			local numGuildMates1 = searchResultInfo1.numGuildMates
+			local LN1 = searchResultInfo1.leaderName
+
+			local numBNetFriends2 = searchResultInfo2.numBNetFriends
+			local numCharFriends2 = searchResultInfo2.numCharFriends
+			local numGuildMates2 = searchResultInfo2.numGuildMates
+			local LN2 = searchResultInfo2.leaderName
 
 			if (LN1 and ( LN1:find ("Hyjal") or LN1:find ("Arak-arahm") or LN1:find ("Temple noir") or LN1:find ("Arathi") or LN1:find ("Archimonde") or LN1:find ("Ysondre") or LN1:find ("Chants �ternels") or LN1:find ("Cho'gall") or LN1:find ("Confr�rie du Thorium") or LN1:find ("Conseil des Ombres") or LN1:find ("Culte de la Rive noire") or LN1:find ("Dalaran") or LN1:find ("Vol'jin") or LN1:find ("Drek'Thar") or LN1:find ("Eitrigg") or LN1:find ("Sinstralis") or LN1:find ("Eldre'Thalas") or LN1:find ("Naxxramas") or LN1:find ("Varimathras") or LN1:find ("Uldaman") or LN1:find ("Garona") or LN1:find ("Illidan") or LN1:find ("Kael'thas") or LN1:find ("Sargeras") or LN1:find ("Khaz Modan") or LN1:find ("Kirin Tor") or LN1:find ("Krasus") or LN1:find ("La Croisade �carlate") or LN1:find ("Rashgarroth") or LN1:find ("Les Clairvoyants") or LN1:find ("Les Sentinelles") or LN1:find ("Mar�cage de Zangar") or LN1:find ("Medivh") or LN1:find ("Ner'zhul") or LN1:find ("Throk'Feroth") or LN1:find ("Elune") or not select (2, strsplit ("-", LN1)))) then 
 				if (LN2 and ( LN2:find ("Hyjal") or LN2:find ("Arak-arahm") or LN2:find ("Temple noir") or LN2:find ("Arathi") or LN2:find ("Archimonde") or LN2:find ("Ysondre") or LN2:find ("Chants �ternels") or LN2:find ("Cho'gall") or LN2:find ("Confr�rie du Thorium") or LN2:find ("Conseil des Ombres") or LN2:find ("Culte de la Rive noire") or LN2:find ("Dalaran") or LN2:find ("Vol'jin") or LN2:find ("Drek'Thar") or LN2:find ("Eitrigg") or LN2:find ("Sinstralis") or LN2:find ("Eldre'Thalas") or LN2:find ("Naxxramas") or LN2:find ("Varimathras") or LN2:find ("Uldaman") or LN2:find ("Garona") or LN2:find ("Illidan") or LN2:find ("Kael'thas") or LN2:find ("Sargeras") or LN2:find ("Khaz Modan") or LN2:find ("Kirin Tor") or LN2:find ("Krasus") or LN2:find ("La Croisade �carlate") or LN2:find ("Rashgarroth") or LN2:find ("Les Clairvoyants") or LN2:find ("Les Sentinelles") or LN2:find ("Mar�cage de Zangar") or LN2:find ("Medivh") or LN2:find ("Ner'zhul") or LN2:find ("Throk'Feroth") or LN2:find ("Elune") or not select (2, strsplit ("-", LN2)))) then 
@@ -290,7 +337,9 @@ end)
 --> ITALIAN
 	function LocalizedGroups:InstallHookIT()
 		hooksecurefunc ("LFGListSearchEntry_Update", function (self) 
-			local id1, activityID1, name1, comment1, voiceChat1, iLvl1, age1, numBNetFriends1, numCharFriends1, numGuildMates1, isDelisted1, _, LN1, numMembers1 = C_LFGList.GetSearchResultInfo (self.resultID)
+			local searchResultInfo1 = C_LFGList.GetSearchResultInfo(self.resultID)
+			local LN1 = searchResultInfo1.leaderName
+			local activityID1 = searchResultInfo1.activityID
 			
 			if (LN1 and ( LN1:find ("Pozzo dell'Eternit�") or LN1:find ("Nemesis") or not select (2, strsplit ("-", LN1)))) then 
 				local activityName = C_LFGList.GetActivityInfo (activityID1)
@@ -304,8 +353,18 @@ end)
 	function LocalizedGroups:ReplaceSortFuncIT()
 		LFGListUtil_SortSearchResultsCB = function (id1, id2)
 			
-			local _, _, _, _, _, _, _, numBNetFriends1, numCharFriends1, numGuildMates1, _, _, LN1 = C_LFGList.GetSearchResultInfo (id1)
-			local _, _, _, _, _, _, _, numBNetFriends2, numCharFriends2, numGuildMates2, _, _, LN2 = C_LFGList.GetSearchResultInfo (id2)
+			local searchResultInfo1 = C_LFGList.GetSearchResultInfo(id1)
+			local searchResultInfo2 = C_LFGList.GetSearchResultInfo(id2)
+
+			local numBNetFriends1 = searchResultInfo1.numBNetFriends
+			local numCharFriends1 = searchResultInfo1.numCharFriends
+			local numGuildMates1 = searchResultInfo1.numGuildMates
+			local LN1 = searchResultInfo1.leaderName
+
+			local numBNetFriends2 = searchResultInfo2.numBNetFriends
+			local numCharFriends2 = searchResultInfo2.numCharFriends
+			local numGuildMates2 = searchResultInfo2.numGuildMates
+			local LN2 = searchResultInfo2.leaderName
 
 			if (LN1 and ( LN1:find ("Pozzo dell'Eternit�") or LN1:find ("Nemesis") or not select (2, strsplit ("-", LN1)))) then 
 				if (LN2 and ( LN2:find ("Pozzo dell'Eternit�") or LN2:find ("Nemesis") or not select (2, strsplit ("-", LN2)))) then 
@@ -353,7 +412,9 @@ end)
 --> SPAIN
 	function LocalizedGroups:InstallHookSP()
 		hooksecurefunc ("LFGListSearchEntry_Update", function (self) 
-			local id1, activityID1, name1, comment1, voiceChat1, iLvl1, age1, numBNetFriends1, numCharFriends1, numGuildMates1, isDelisted1, _, LN1, numMembers1 = C_LFGList.GetSearchResultInfo (self.resultID)
+			local searchResultInfo1 = C_LFGList.GetSearchResultInfo(self.resultID)
+			local LN1 = searchResultInfo1.leaderName
+			local activityID1 = searchResultInfo1.activityID
 			
 			if (LN1 and (LN1:find ("Dun Modr") or LN1:find ("Uldum") or LN1:find ("Colinas Pardas") or LN1:find ("C'Thun") or LN1:find ("Shen'dralar") or LN1:find ("Exodar") or LN1:find ("Los Errantes") or LN1:find ("Minahonda") or LN1:find ("Sanguino") or LN1:find ("Zul'jin") or LN1:find ("Tyrande") or not select (2, strsplit ("-", LN1)))) then 
 				local activityName = C_LFGList.GetActivityInfo (activityID1)
@@ -367,8 +428,18 @@ end)
 	function LocalizedGroups:ReplaceSortFuncSP()
 		LFGListUtil_SortSearchResultsCB = function (id1, id2)
 			
-			local _, _, _, _, _, _, _, numBNetFriends1, numCharFriends1, numGuildMates1, _, _, LN1 = C_LFGList.GetSearchResultInfo (id1)
-			local _, _, _, _, _, _, _, numBNetFriends2, numCharFriends2, numGuildMates2, _, _, LN2 = C_LFGList.GetSearchResultInfo (id2)
+			local searchResultInfo1 = C_LFGList.GetSearchResultInfo(id1)
+			local searchResultInfo2 = C_LFGList.GetSearchResultInfo(id2)
+
+			local numBNetFriends1 = searchResultInfo1.numBNetFriends
+			local numCharFriends1 = searchResultInfo1.numCharFriends
+			local numGuildMates1 = searchResultInfo1.numGuildMates
+			local LN1 = searchResultInfo1.leaderName
+
+			local numBNetFriends2 = searchResultInfo2.numBNetFriends
+			local numCharFriends2 = searchResultInfo2.numCharFriends
+			local numGuildMates2 = searchResultInfo2.numGuildMates
+			local LN2 = searchResultInfo2.leaderName
 
 			if (LN1 and ( LN1:find ("Dun Modr") or LN1:find ("Uldum") or LN1:find ("Colinas Pardas") or LN1:find ("C'Thun") or LN1:find ("Shen'dralar") or LN1:find ("Exodar") or LN1:find ("Los Errantes") or LN1:find ("Minahonda") or LN1:find ("Sanguino") or LN1:find ("Zul'jin") or LN1:find ("Tyrande") or not select (2, strsplit ("-", LN1)))) then 
 				if (LN2 and ( LN2:find ("Dun Modr") or LN2:find ("Uldum") or LN2:find ("Colinas Pardas") or LN2:find ("C'Thun") or LN2:find ("Shen'dralar") or LN2:find ("Exodar") or LN2:find ("Los Errantes") or LN2:find ("Minahonda") or LN2:find ("Sanguino") or LN2:find ("Zul'jin") or LN2:find ("Tyrande") or not select (2, strsplit ("-", LN2)))) then 
@@ -416,7 +487,9 @@ end)
 --> RUSSIAN
 	function LocalizedGroups:InstallHookRU()
 		hooksecurefunc ("LFGListSearchEntry_Update", function (self) 
-			local id1, activityID1, name1, comment1, voiceChat1, iLvl1, age1, numBNetFriends1, numCharFriends1, numGuildMates1, isDelisted1, _, LN1, numMembers1 = C_LFGList.GetSearchResultInfo (self.resultID)
+			local searchResultInfo1 = C_LFGList.GetSearchResultInfo(self.resultID)
+			local LN1 = searchResultInfo1.leaderName
+			local activityID1 = searchResultInfo1.activityID
 			
 			if (LN1 and (LN1:find ("Razuvious") or LN1:find ("Thermaplugg") or LN1:find ("Soulflayer") or LN1:find ("Ashenvale") or LN1:find ("Azuregos") or LN1:find ("Blackscar") or LN1:find ("Lich King") or LN1:find ("Howling Fjord") or LN1:find ("Grom") or LN1:find ("Greymane") or LN1:find ("Gordunni") or LN1:find ("Goldrinn") or LN1:find ("Booty Bay") or LN1:find ("Galakrond") or LN1:find ("Borean Tundra") or LN1:find ("Deathguard") or LN1:find ("Deathweaver") or LN1:find ("Eversong") or LN1:find ("Deepholm") or LN1:find ("Fordragon") or not select (2, strsplit ("-", LN1)))) then 
 				local activityName = C_LFGList.GetActivityInfo (activityID1)
@@ -430,8 +503,18 @@ end)
 	function LocalizedGroups:ReplaceSortFuncRU()
 		LFGListUtil_SortSearchResultsCB = function (id1, id2)
 			
-			local _, _, _, _, _, _, _, numBNetFriends1, numCharFriends1, numGuildMates1, _, _, LN1 = C_LFGList.GetSearchResultInfo (id1)
-			local _, _, _, _, _, _, _, numBNetFriends2, numCharFriends2, numGuildMates2, _, _, LN2 = C_LFGList.GetSearchResultInfo (id2)
+			local searchResultInfo1 = C_LFGList.GetSearchResultInfo(id1)
+			local searchResultInfo2 = C_LFGList.GetSearchResultInfo(id2)
+
+			local numBNetFriends1 = searchResultInfo1.numBNetFriends
+			local numCharFriends1 = searchResultInfo1.numCharFriends
+			local numGuildMates1 = searchResultInfo1.numGuildMates
+			local LN1 = searchResultInfo1.leaderName
+
+			local numBNetFriends2 = searchResultInfo2.numBNetFriends
+			local numCharFriends2 = searchResultInfo2.numCharFriends
+			local numGuildMates2 = searchResultInfo2.numGuildMates
+			local LN2 = searchResultInfo2.leaderName
 
 			if (LN1 and ( LN1:find ("Razuvious") or LN1:find ("Thermaplugg") or LN1:find ("Soulflayer") or LN1:find ("Ashenvale") or LN1:find ("Azuregos") or LN1:find ("Blackscar") or LN1:find ("Lich King") or LN1:find ("Howling Fjord") or LN1:find ("Grom") or LN1:find ("Greymane") or LN1:find ("Gordunni") or LN1:find ("Goldrinn") or LN1:find ("Booty Bay") or LN1:find ("Galakrond") or LN1:find ("Borean Tundra") or LN1:find ("Deathguard") or LN1:find ("Deathweaver") or LN1:find ("Eversong") or LN1:find ("Deepholm") or LN1:find ("Fordragon") or not select (2, strsplit ("-", LN1)))) then 
 				if (LN2 and ( LN2:find ("Razuvious") or LN2:find ("Thermaplugg") or LN2:find ("Soulflayer") or LN2:find ("Ashenvale") or LN2:find ("Azuregos") or LN2:find ("Blackscar") or LN2:find ("Lich King") or LN2:find ("Howling Fjord") or LN2:find ("Grom") or LN2:find ("Greymane") or LN2:find ("Gordunni") or LN2:find ("Goldrinn") or LN2:find ("Booty Bay") or LN2:find ("Galakrond") or LN2:find ("Borean Tundra") or LN2:find ("Deathguard") or LN2:find ("Deathweaver") or LN2:find ("Eversong") or LN2:find ("Deepholm") or LN2:find ("Fordragon") or not select (2, strsplit ("-", LN2)))) then 

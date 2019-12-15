@@ -1,0 +1,10 @@
+## Interface: 80200
+## Title: Localized Groups
+## Notes: Modify the Premade Groups in order to show first groups from your region.
+## Version: 0.1
+
+#@no-lib-strip@
+libs.xml
+#@end-no-lib-strip@
+
+LocalizedGroups.lua

@@ -26,6 +26,9 @@ end)
 			local LN1 = searchResultInfo1.leaderName
 			local activityID1 = searchResultInfo1.activityID
 
+			--searchResultInfo1.name
+			--searchResultInfo1.comment
+
 			if (LN1 and ( LN1:find ("Azralon") or LN1:find ("Nemesis") or LN1:find ("Gallywyx") or LN1:find ("Tol Barad") or LN1:find ("Goldrinn") or not select (2, strsplit ("-", LN1)))) then 
 				local activityName = C_LFGList.GetActivityInfo (activityID1)
 				

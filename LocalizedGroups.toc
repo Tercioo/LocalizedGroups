@@ -1,4 +1,4 @@
-## Interface: 80300
+## Interface: 90005
 ## Title: Localized Groups
 ## Notes: Modify the Premade Groups in order to show first groups from your region.
 ## Version: 0.1
